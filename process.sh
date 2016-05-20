@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROCESS="sortcodetest.csv"
+PROCESS="sortcodes.csv"
 
 ## Get the result output from web
 for sortcode in $(cat $PROCESS); do
