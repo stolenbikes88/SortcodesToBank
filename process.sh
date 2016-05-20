@@ -1,14 +1,16 @@
 #!/bin/bash
 
+PROCESS="sortcodetest.csv"
+
 ## Get the result output from web
-for sortcode in $(cat sortcodetest.csv); do
+for sortcode in $(cat $PROCESS); do
 	CLEANED=$(echo "$sortcode" | sed 's/\r$//')
 	wget http://www.thebankcodes.com/sortcode/$CLEANED -P rawoutput
 done
 
 ## Process into CSV
 echo -e "SORTCODE \t STATUS \t BANK \t ADDRESS" >> output.csv
-for sortcode in $(cat sortcodetest.csv); do
+for sortcode in $(cat $PROCESS); do
 	CLEANED=$(echo "$sortcode" | sed 's/\r$//')
 	LINE=$(cat rawoutput/$CLEANED | head -n 399 | tail -1)
 
